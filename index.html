@@ -64,6 +64,68 @@
         </div>
     </div>
     
+    <div class="character-selection-container" id="characterSelectionScreen" style="display: none;">
+        <div class="cat-decorations">
+            <div class="cat cat-1">🐱</div>
+            <div class="cat cat-2">😸</div>
+            <div class="cat cat-3">😺</div>
+            <div class="cat cat-4">😻</div>
+            <div class="cat cat-5">🙀</div>
+            <div class="cat cat-6">😿</div>
+            <div class="cat cat-7">🐾</div>
+            <div class="cat cat-8">🐾</div>
+            <div class="cat cat-9">🐱</div>
+            <div class="cat cat-10">😸</div>
+        </div>
+        
+        <div class="character-box">
+            <h1 class="title">Choose Your Character! 🎭</h1>
+            <p class="subtitle">Select boy or girl to continue</p>
+            
+            <div class="character-options">
+                <button class="character-btn boy-btn" data-gender="boy">
+                    <span class="character-emoji">👦</span>
+                    <span class="character-label">Boy</span>
+                </button>
+                <button class="character-btn girl-btn" data-gender="girl">
+                    <span class="character-emoji">👧</span>
+                    <span class="character-label">Girl</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="name-selection-container" id="nameSelectionScreen" style="display: none;">
+        <div class="cat-decorations">
+            <div class="cat cat-1">🐱</div>
+            <div class="cat cat-2">😸</div>
+            <div class="cat cat-3">😺</div>
+            <div class="cat cat-4">😻</div>
+            <div class="cat cat-5">🙀</div>
+            <div class="cat cat-6">😿</div>
+            <div class="cat cat-7">🐾</div>
+            <div class="cat cat-8">🐾</div>
+            <div class="cat cat-9">🐱</div>
+            <div class="cat cat-10">😸</div>
+        </div>
+        
+        <div class="name-box">
+            <h1 class="title">Name Your Character! ✏️</h1>
+            <p class="subtitle" id="characterSubtitle">What should we call you?</p>
+            
+            <form id="nameForm" class="name-form">
+                <div class="form-group">
+                    <label for="characterName">Character Name:</label>
+                    <input type="text" id="characterName" required placeholder="Enter your name" maxlength="20" autocomplete="off">
+                </div>
+                
+                <div id="nameErrorMessage" class="error-message" style="display: none;"></div>
+                
+                <button type="submit" class="submit-btn">Start Game 🎮</button>
+            </form>
+        </div>
+    </div>
+    
     <div class="game-container" id="gameScreen" style="display: none;">
         <h1>Welcome to the Game! 🎉</h1>
         <p>You have successfully registered!</p>
