@@ -223,16 +223,108 @@ document.addEventListener('DOMContentLoaded', function() {
         nameSelectionScreen.style.display = 'none';
         gameScreen.style.display = 'flex';
         
+        // Initialize game screen
+        initializeGameScreen();
+    });
+    
+    // Initialize game screen with character and cat companion
+    function initializeGameScreen() {
+        const genderEmoji = playerData.gender === 'boy' ? '👦' : '👧';
+        const catCompanion = playerData.gender === 'boy' ? '🐱' : '😸'; // Different cats for boy/girl
+        
+        // Display character
+        document.getElementById('characterDisplay').textContent = genderEmoji;
+        document.getElementById('playerNameDisplay').textContent = playerData.name;
+        
+        // Display cat companion
+        document.getElementById('catCompanion').textContent = catCompanion;
+        
         // Display player info
         const ageText = playerData.age.years === 1
             ? `1 year${playerData.age.months > 0 ? ` and ${playerData.age.months} month${playerData.age.months !== 1 ? 's' : ''}` : ''}`
             : `${playerData.age.years} year${playerData.age.years !== 1 ? 's' : ''}${playerData.age.months > 0 ? ` and ${playerData.age.months} month${playerData.age.months !== 1 ? 's' : ''}` : ''}`;
         
-        const genderEmoji = playerData.gender === 'boy' ? '👦' : '👧';
-        
         document.getElementById('playerInfo').innerHTML = 
             `<strong>Name:</strong> ${playerData.name} ${genderEmoji}<br>
              <strong>Birth Date:</strong> ${playerData.birthMonth}/${playerData.birthDay}/${playerData.birthYear}<br>
              <strong>Age:</strong> ${ageText} 🎉`;
-    });
+        
+        // Setup interaction buttons
+        setupInteractionButtons();
+    }
+    
+    // Setup interaction buttons
+    function setupInteractionButtons() {
+        const feedBtn = document.getElementById('feedBtn');
+        const cleanLitterBtn = document.getElementById('cleanLitterBtn');
+        const batheBtn = document.getElementById('batheBtn');
+        
+        feedBtn.addEventListener('click', () => performAction('feed'));
+        cleanLitterBtn.addEventListener('click', () => performAction('clean'));
+        batheBtn.addEventListener('click', () => performAction('bathe'));
+    }
+    
+    // Perform action with animations
+    function performAction(actionType) {
+        const characterDisplay = document.getElementById('characterDisplay');
+        const actionIndicator = document.getElementById('actionIndicator');
+        const catCompanion = document.getElementById('catCompanion');
+        const catReaction = document.getElementById('catReaction');
+        
+        // Disable buttons during animation
+        const buttons = document.querySelectorAll('.interaction-btn');
+        buttons.forEach(btn => btn.disabled = true);
+        
+        // Define action details
+        const actions = {
+            feed: {
+                characterAction: '🍽️',
+                characterAnimation: 'feed-animation',
+                catReaction: '😋',
+                message: 'Feeding the cat...'
+            },
+            clean: {
+                characterAction: '🧹',
+                characterAnimation: 'clean-animation',
+                catReaction: '😌',
+                message: 'Cleaning the litter box...'
+            },
+            bathe: {
+                characterAction: '🛁',
+                characterAnimation: 'bathe-animation',
+                catReaction: '😊',
+                message: 'Bathing the cat...'
+            }
+        };
+        
+        const action = actions[actionType];
+        
+        // Show action indicator
+        actionIndicator.textContent = action.characterAction;
+        actionIndicator.style.display = 'block';
+        actionIndicator.classList.add('active');
+        
+        // Add character animation class
+        characterDisplay.classList.add(action.characterAnimation);
+        
+        // Show cat reaction after a delay
+        setTimeout(() => {
+            catReaction.textContent = action.catReaction;
+            catReaction.style.display = 'block';
+            catReaction.classList.add('show');
+        }, 500);
+        
+        // Reset after animation completes
+        setTimeout(() => {
+            // Remove animations
+            characterDisplay.classList.remove(action.characterAnimation);
+            actionIndicator.classList.remove('active');
+            actionIndicator.style.display = 'none';
+            catReaction.classList.remove('show');
+            catReaction.style.display = 'none';
+            
+            // Re-enable buttons
+            buttons.forEach(btn => btn.disabled = false);
+        }, 2000);
+    }
 });

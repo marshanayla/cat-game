@@ -127,9 +127,43 @@
     </div>
     
     <div class="game-container" id="gameScreen" style="display: none;">
-        <h1>Welcome to the Game! 🎉</h1>
-        <p>You have successfully registered!</p>
-        <p id="playerInfo"></p>
+        <div class="game-header">
+            <h1>Welcome, <span id="playerNameDisplay"></span>! 🎉</h1>
+            <p class="game-subtitle">Take care of your cat companion!</p>
+        </div>
+        
+        <div class="game-content">
+            <div class="character-scene">
+                <div class="character-container">
+                    <div id="characterDisplay" class="character-avatar"></div>
+                    <div id="actionIndicator" class="action-indicator" style="display: none;"></div>
+                </div>
+                <div class="cat-companion-container">
+                    <div id="catCompanion" class="cat-companion"></div>
+                    <div id="catReaction" class="cat-reaction" style="display: none;"></div>
+                </div>
+            </div>
+            
+            <div class="interactions-panel">
+                <h2>Interact with your cat:</h2>
+                <div class="interaction-buttons">
+                    <button id="feedBtn" class="interaction-btn feed-btn">
+                        <span class="btn-icon">🍽️</span>
+                        <span class="btn-text">Feed Cat</span>
+                    </button>
+                    <button id="cleanLitterBtn" class="interaction-btn clean-btn">
+                        <span class="btn-icon">🧹</span>
+                        <span class="btn-text">Clean Litter Box</span>
+                    </button>
+                    <button id="batheBtn" class="interaction-btn bathe-btn">
+                        <span class="btn-icon">🛁</span>
+                        <span class="btn-text">Bathe Cat</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="playerInfo" class="player-info-box"></div>
     </div>
     
     <script src="script.js"></script>
